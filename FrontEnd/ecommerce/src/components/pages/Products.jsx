@@ -37,7 +37,7 @@ function Products() {
               <div id={e.id} className='col-lg-4' key={i}>
                 <div className='card'>
                   <div className='img-warp'>
-                    <img src={e.img} class="img-thumbnail"/>
+                    <img src={e.img} className="img-thumbnail"/>
                   </div>
                   <div className='card-body'>
                     <h5 className='card-titel'>{e.name}</h5>

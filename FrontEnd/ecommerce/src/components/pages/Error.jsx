@@ -10,7 +10,7 @@ function Error() {
 </div>
 <div className='container-content'>
     <p> page not found....</p>
-    <Link to="/" className="btn btn-primary"> Go Back to Homepage </Link>
+    <Link to="index element" className="btn btn-primary"> Go Back to Homepage </Link>
 </div>
     </main>
     

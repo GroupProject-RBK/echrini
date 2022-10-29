@@ -1,12 +1,13 @@
 const express= require("express")
 const router = express.Router()
-const {getAll}= require("../controllers/products")
+const {getAll,getOne}= require("../controllers/products")
 const { register ,getUser,login,logout} = require("../controllers/users")
 const {insertP,updateP,deleteP,updateUser,deleteUser,getAllP}=require("../controllers/userdashboard")
 const {buy,getAllbuys}=require('../controllers/buys')
 
 // products routes
 router.get("/getAll" , getAll)
+router.get("/:id",getOne)
 // Users routes 
 router.post('/register',register)
 router.post("/login",login)

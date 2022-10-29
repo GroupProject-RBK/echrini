@@ -4,12 +4,16 @@ import axios from "axios"
 
 
 const SingleProduct = () => {
+const [iduser,setIduser] = useState("")
+
+
+
 
   const navigate = useNavigate();
   const { productId } = useParams();
   const { pathname } = useLocation();
   const [data,setData] = useState([])
- 
+ console.log(data)
 useEffect(()=>{
   axios.get(`http://localhost:3002/products/${productId}`).then((resp)=>{
    setData(resp.data)
@@ -18,19 +22,17 @@ useEffect(()=>{
   })
 },[])
 
- 
-console.log(data[0])
   return (
     <main>
       <div className="pg-header">
         <div className="container">
           <div className="row align-items-center">
-            {data && data.map((e,i)=>{
-              return (
+            {data.length ?
+               (
               <div className="col-lg-7">
-              <h1>{e.name}</h1>
-            </div> )
-            })}
+              <h1>{data[0].name}</h1>
+            </div> ) : null
+            }
             
             <div className="col-lg-5">
               <nav aria-label="breadcrumb">
@@ -62,12 +64,14 @@ console.log(data[0])
             <h2>{e.name}</h2>
             <p className="price"><strong>{e.price}$</strong></p>
             <p>{e.description}</p>
-            <button className="btn btn-primary btn-sm" > BUY </button> &nbsp; 
+           
             <br />
             <br />
             <br />
             <button className="btn btn-primary btn-sm" onClick={() => navigate(-1)}>BACK</button> &nbsp; 
             <button className="btn btn-primary btn-sm" onClick={() => navigate('/products')}>NAVIGATE TO PRODUCTS</button> &nbsp;
+            <button className="btn btn-primary btn-sm" onClick={()=> {localStorage.length ? localStorage.setItem(`${data[0].id}`,JSON.stringify(data) && navigate("/products")) : navigate("/login") }}> BUY </button> &nbsp; 
+            
             <Link to="/products" className="btn btn-primary btn-sm">PRODUCTS</Link>
           </div> )
          })}
@@ -76,6 +80,6 @@ console.log(data[0])
       </div>
     </main>
   )
-}
+        }
 
 export default SingleProduct;

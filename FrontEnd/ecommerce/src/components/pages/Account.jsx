@@ -91,7 +91,10 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={()=>{
+            localStorage.clear()
+            console.log("hi")
+          }}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
