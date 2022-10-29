@@ -20,5 +20,10 @@ db.query(sql,values,userid,prodid,(err,results)=>{
   cb(err,results)
 })
 },
-
+getOne : (cb,id) =>{
+  var sql = `select * from products where id = ?`
+  db.query(sql,id,(err,results)=>{
+    cb(err,results)
+  })
+}
 }
