@@ -25,9 +25,9 @@ module.exports = {
         db.query(
         `INSERT INTO user (username, email, password) VALUES ('${req.body.username}', ${db.escape(req.body.email)}, ${db.escape(hash)})`,(err, result) => {
         if (err) {
-        throw err;
+        
         return res.status(400).send({
-        msg: err
+        msg:'invalid credentials'
         });}
         return res.status(201).send({
         msg: 'The user has been registerd with us!'});});
@@ -43,7 +43,7 @@ module.exports = {
         (err, result) => {
         // user does not exists
         if (err) {
-        throw err;
+        
         return res.status(400).send({
         msg: err
         });
@@ -60,7 +60,7 @@ module.exports = {
         (bErr, bResult) => {
         // wrong password
         if (bErr) {
-        throw bErr;
+        
         return res.status(401).send({
         msg: 'Email or password is incorrect!'
         });
@@ -68,7 +68,7 @@ module.exports = {
         if (bResult) {
             console.log(bResult)
         const token = jwt.sign({iduser:result[0].iduser},'jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g225',{ expiresIn: '24h' });
-        // res.status(200).cookie('thetoken',token,{httpOnly:true,maxAge:24*60*60*1000})
+        res.cookie('thetoken',token,{httpOnly:true,maxAge:24*60*60*1000})
         return res.status(200).send(token);
         }
         return res.status(401).send({

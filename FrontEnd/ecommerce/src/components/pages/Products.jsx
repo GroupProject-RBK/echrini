@@ -7,8 +7,9 @@ function Products() {
 
   const checkF=()=>{
     setCheck(!check)
+   
   }
-
+  
   useEffect(()=>{axios.get('http://localhost:3002/products/getAll').then((resp)=>{setData(resp.data)}).catch(err=>{throw err})},[check])
   return (
     <main>
@@ -37,7 +38,7 @@ function Products() {
               <div id={e.id} className='col-lg-4' key={i}>
                 <div className='card'>
                   <div className='img-warp'>
-                    <img src={e.img} className="img-thumbnail"/>
+                    <img src={JSON.parse(e.img)} className="img-thumbnail"/>
                   </div>
                   <div className='card-body'>
                     <h5 className='card-titel'>{e.name}</h5>

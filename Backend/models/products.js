@@ -26,5 +26,4 @@ getOne : (cb,id) =>{
     cb(err,results)
   })
 }
-
 }

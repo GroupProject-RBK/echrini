@@ -89,6 +89,7 @@ export default function MenuListComposition() {
                     <MenuItem onClick={handleClose}>Technology</MenuItem>
                     </Link>
                     <MenuItem onClick={handleClose}>DIY</MenuItem>
+                    
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

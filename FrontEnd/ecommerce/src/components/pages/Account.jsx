@@ -12,6 +12,7 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 
+
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -93,10 +94,10 @@ export default function AccountMenu() {
         </MenuItem>
         <MenuItem onClick={()=>{
             localStorage.clear()
-            console.log("hi")
+            window.location.reload(false)          
           }}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
+          <ListItemIcon >
+            <Logout fontSize="small"/>
           </ListItemIcon>
           Logout
         </MenuItem>
