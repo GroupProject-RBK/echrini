@@ -6,7 +6,7 @@ module.exports = {
      })   
 
     },
-    getOne : (req,res)=>{
+      getOne : (req,res)=>{
         products.getOne((err,results)=>{
             err ?  res.status(500).send(err) : res.status(201).json(results)
          },req.params.id)

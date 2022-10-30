@@ -56,7 +56,7 @@ export default function MenuListComposition() {
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          <p >
+          <p className='P'>
           Categories
         </p>
           

@@ -8,6 +8,7 @@ import Error from "./components/pages/Error"
 import MainLayout from "./components/pages/MainLayout"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import Login from "./components/pages/Login"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Tech from "./components/pages/Tech"
@@ -21,6 +22,7 @@ function App() {
       <BrowserRouter>
     <Header/>
       <Routes>
+
 <Route path="login" element={<Login/>}></Route>
 <Route path="register" element={<Register/>}></Route>
 <Route path="add" element={<AddProduct/>}/>        
