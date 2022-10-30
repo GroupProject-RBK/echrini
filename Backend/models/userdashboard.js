@@ -18,9 +18,23 @@ module.exports={
         var sql='select * from products where user_id=?'
         db.query(sql,[values.user_id],(err,result)=>{cb(err,result)})
     },
-    updateUser:(cb,values)=>{
-        var sql='update user set username=? password=? email=? where iduser=?'
-        db.query(sql,[values.username,values.password,values.iduser],(err,result)=>{cb(err,result)})
+    updateUser:async(req,res)=>{
+        console.log(req.body)
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+            if (err) {
+            return res.status(500).send({
+            msg: err
+            });
+            } else {
+            // has hashed pw => add to database
+            const sql = `update user set username=${req.body.username} ; password=${db.escape(hash)} ; email=${db.escape(req.body.email)} where iduser=${req.body.id} `
+           db.query(sql,(error, result) => {
+            if (error) {
+            return res.status(500).send(error
+            )}
+            return res.status(200).send(result);});
+            }
+            });
     },
     deleteAcc:(cb,values)=>{
         var sql='delete from user where iduser=?'

@@ -13,7 +13,7 @@ const [iduser,setIduser] = useState("")
   const { productId } = useParams();
   const { pathname } = useLocation();
   const [data,setData] = useState([])
- console.log(data)
+
 useEffect(()=>{
   axios.get(`http://localhost:3002/products/${productId}`).then((resp)=>{
    setData(resp.data)

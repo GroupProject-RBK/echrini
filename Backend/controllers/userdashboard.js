@@ -1,6 +1,6 @@
 const bcrypt=require('bcrypt')
 const dash=require('../models/userdashboard')
-
+const db = require("../database/index")
 module.exports={
     insertP:(req,res)=>{
         dash.insertP((err,result)=>{
@@ -23,24 +23,47 @@ module.exports={
         },req.body)
     },
     updateUser:(req,res)=>{
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-            if (err) {
-            return res.status(500).send({
-            msg: err
-            });
-            } else {
-            // has hashed pw => add to database
-            db.query(
-            `update user set username=${req.body.username} password=${db.escape(hash)} email=${db.escape(req.body.email)} where iduser=${req.body.id}`,(error, result) => {
-            if (error) {
-            throw error;
-            return res.status(400).send({
-            msg: error
-            });}
-            return res.status(201).send({
-            msg: 'The user has been registerd with us!'});});
-            }
-            });
+        // try{
+        // bcrypt.hash(req.body.password, 10, (err, hash) => {
+        //     if (err) {
+        //     return res.status(500).send({
+        //     msg: err
+        //     });
+        //     } else {
+        //     // has hashed pw => add to database
+        //     db.query(
+        //     `update user set username=${req.body.username}; password=${db.escape(hash)} ;email=${db.escape(req.body.email)} where iduser=${req.body.id}`,(error, result) => {
+        //     if (error) {
+        //     throw error;
+        //     return res.status(400).send({
+        //     msg: error
+        //     });}
+        //     return res.status(201).send({
+        //     msg: 'The user has been registerd with us!'});});
+        //     }
+        //     })
+        // }catch(err){
+        //     console.log(err);
+        // };
+        
+        try {
+            
+            var pas
+            const hashed = bcrypt.hashSync(req.body.password, 10,(err, hash) => {
+                   err ? res.status(500).send({ msg: err}) : hash
+                     })
+            sql = `update user set username="${req.body.username}", email="${req.body.email}",password="${hashed}" where iduser=${req.body.id}`
+            db.query(sql, (err,result)=>{
+                if(err){
+                return res.status(400).send(err)}
+                else {
+                    return    res.status(200).json(result)              }
+            })
+            
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({message :"server error"})
+        }
     },
     deleteUser:(req,res)=>{
         dash.deleteUser((err,result)=>{
