@@ -10,13 +10,7 @@ import './Add.css';
 
 function AddProduct() {
   const [url, setUrl] = useState("");
-  const [product, setProduct] = useState({
-    name :"",
-    category :"",
-    price : "",
-    description :"",
-    user_id :""
-  });
+  const [product, setProduct] = useState({});
   const [image, setImage] = useState("");
 
   
@@ -95,7 +89,6 @@ function AddProduct() {
             id="description"
             label="Description"
             multiline
-            rows={4}
             margin="normal"
             onChange={handleChange}
           />
@@ -105,6 +98,7 @@ function AddProduct() {
             id="user_id"
             label="User_id"
             multiline
+            rows={4}
             margin="normal"
             onChange={handleChange}
           />

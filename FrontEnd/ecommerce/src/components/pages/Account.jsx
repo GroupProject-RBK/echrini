@@ -92,8 +92,8 @@ export default function AccountMenu() {
             localStorage.clear()
             window.location.reload(false)
           }}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
+          <ListItemIcon >
+            <Logout fontSize="small"/>
           </ListItemIcon>
           Logout
         </MenuItem>

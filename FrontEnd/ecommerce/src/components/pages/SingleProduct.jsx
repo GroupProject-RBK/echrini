@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate , useParams, useLocation } from 'react-router-dom'
 import axios from "axios"
-
+import { add, total } from 'cart-localstorage' 
 
 const SingleProduct = () => {
 const [iduser,setIduser] = useState("")
@@ -21,6 +21,7 @@ useEffect(()=>{
     console.log(err);
   })
 },[])
+
 
   return (
     <main>
@@ -55,7 +56,7 @@ useEffect(()=>{
           {data && data.map((e,i)=>{
             return (
  <div className="col-lg-5" key = {i}>
- <img src={e.img} alt="" className="img-fluid" />
+ <img src={JSON.parse(e.img)} alt="" className="img-fluid" />
 </div> )
           })}
          {data && data.map((e,i)=>{
@@ -70,7 +71,7 @@ useEffect(()=>{
             <br />
             <button className="btn btn-primary btn-sm" onClick={() => navigate(-1)}>BACK</button> &nbsp; 
             <button className="btn btn-primary btn-sm" onClick={() => navigate('/products')}>NAVIGATE TO PRODUCTS</button> &nbsp;
-            <button className="btn btn-primary btn-sm" onClick={()=> {localStorage.length ? localStorage.setItem(`${data[0].id}`,JSON.stringify(data) && navigate("/products")) : navigate("/login") }}> BUY </button> &nbsp; 
+            <button className="btn btn-primary btn-sm" onClick={()=> {localStorage.length > 0 ? data.length > 0 &&  add({id:data[0].id,name:data[0].name,price:Number(data[0].price),img:data[0].img})  && navigate("/products") : navigate("/login") }}> BUY </button> &nbsp; 
             
             <Link to="/products" className="btn btn-primary btn-sm">PRODUCTS</Link>
           </div> )

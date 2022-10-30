@@ -1,30 +1,48 @@
-import React from 'react'
+import React,{useState} from 'react'
 import images from "../../images"
-function Home() {
-  return (
-    <div id="carouselExampleFade"className="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img src={images[2].url} className="d-block w-70" alt="..."/>
-    </div>
-    <div className="carousel-item">
-      <img src={images[1].url} className="d-block w-70" alt="..."/>
-    </div>
-    <div className="carousel-item">
-      <img src={images[2].url} className="d-block w-70" alt="..."/>
-    </div>
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button  className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div>
 
-  )
+function Home() {
+  // const [index, setIndex] = useState(0);
+
+  // const handleSelect = (selectedIndex, e) => {
+  //   //adjust index to 0 if greater than index of last slide or less than zero
+  //   //slide indexes are zero-based so yourLasSlideIndex would be 1 I guess
+  //   if (selectedIndex >= yourLastSlideIndex+1 || selectedIndex < 0 ){
+  //           this.setIndex(0);
+  //       } else if (selectedIndex !== index) {
+  //           setIndex(selectedIndex);
+  //       }
+  // };
+  return (
+    "hello"
+    // <Carousel activeIndex={index} onSelect={handleSelect}>
+    //   <Carousel.Item>
+    //             <img
+    //             className="d-block w-100"   
+    //             src={images[0].url}
+    //             alt="First slide"
+    //             />
+    //             <Carousel.Caption>
+    //             <h3>First slide label</h3>
+    //             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    //             </Carousel.Caption>
+    //         </Carousel.Item>
+    //         <Carousel.Item>
+    //             <img
+    //             className="d-block w-100"
+    //             src={images[1].url}
+    //             alt="Second slide"
+    //             />
+    //             <Carousel.Caption>
+    //             <h3>Second slide label</h3>
+    //             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    //             </Carousel.Caption>
+    //         </Carousel.Item>
+    // </Carousel>
+  );
+
+
+  
 }
 
 export default Home
