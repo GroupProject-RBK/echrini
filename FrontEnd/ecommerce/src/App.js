@@ -15,7 +15,7 @@ import AddProduct from "./components/pages/AddProduct"
 import Login from "./components/pages/Login"
 import Register from "./components/pages/register"
 import AccountSettings from "./components/AccountSettings"
-import Cart from "./components/pages/cart"
+import Cart from "./components/pages/Cart"
 
 function App() {
   return (

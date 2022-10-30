@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
@@ -6,6 +6,7 @@ import axios from "axios";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import './Add.css';
+import Products from "./Products";
 
 
 function AddProduct() {
@@ -39,6 +40,17 @@ function AddProduct() {
         console.log(err);
       });
   };
+  axios.interceptors.request.use(
+    config => {
+      config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+          return config;
+      },
+      error => {
+          return Promise.reject(error);
+      }
+  )
+
+  useEffect(()=>{axios.post('http://localhost:3002/products/get-user').then(resp=>setProduct({...product,id:resp.data.data.id})).catch(err=> console.log(err))},[])
 
   const uploadHandler = () => {
     axios
@@ -93,16 +105,7 @@ function AddProduct() {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <TextField
-            id="user_id"
-            label="User_id"
-            multiline
-            rows={4}
-            margin="normal"
-            onChange={handleChange}
-          />
-        </div>
+        
         <div>
           <IconButton
             color="primary"
