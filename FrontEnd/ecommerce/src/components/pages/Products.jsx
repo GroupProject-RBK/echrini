@@ -1,6 +1,7 @@
 import axios from 'axios'
 import react,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import helper from '../../utilities/helper'
 function Products() {
   const [data,setData]=useState([])
   const [check,setCheck]=useState(false)
@@ -8,7 +9,7 @@ function Products() {
   const checkF=()=>{
     setCheck(!check)
   }
-
+  
   useEffect(()=>{axios.get('http://localhost:3002/products/getAll').then((resp)=>{setData(resp.data)}).catch(err=>{throw err})},[check])
   return (
     <main>

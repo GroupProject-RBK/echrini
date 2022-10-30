@@ -19,7 +19,7 @@ export default function Login() {
         setcredantial(t)
     }
   
-   await axios.post('http://localhost:3002/products/login',credentials).then((resp)=>{
+   await axios.post('http://localhost:3002/products/login',credentials,{withCredentials:true}).then((resp)=>{
         
         localStorage.setItem('token',resp.data)
     }).catch(err=>console.log(err))

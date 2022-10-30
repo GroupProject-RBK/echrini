@@ -13,6 +13,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Tech from "./components/pages/Tech"
 import AddProduct from "./components/pages/AddProduct"
+import Login from "./components/pages/Login"
+import Register from "./components/pages/register"
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
       <BrowserRouter>
     <Header/>
       <Routes>
-<Route path="/login" element={<Login/>}/>        
+
+<Route path="login" element={<Login/>}></Route>
+<Route path="register" element={<Register/>}></Route>
 <Route path="add" element={<AddProduct/>}/>        
 <Route path="tech" element={<Tech/>}/>                      
 <Route path="index element" element={<Home/>}/>
