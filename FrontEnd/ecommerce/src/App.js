@@ -14,6 +14,8 @@ import Tech from "./components/pages/Tech"
 import AddProduct from "./components/pages/AddProduct"
 import Login from "./components/pages/Login"
 import Register from "./components/pages/register"
+import AccountSettings from "./components/AccountSettings"
+import Cart from "./components/pages/cart"
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
       <BrowserRouter>
     <Header/>
       <Routes>
+<Route path="Cart" element={<Cart/>}></Route>
+<Route path="Settings" element={<AccountSettings/>}></Route>
 <Route path="login" element={<Login/>}></Route>
 <Route path="register" element={<Register/>}></Route>
 <Route path="add" element={<AddProduct/>}/>        

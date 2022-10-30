@@ -20,7 +20,7 @@ export default function Login() {
     }
   
    await axios.post('http://localhost:3002/products/login',credentials,{withCredentials:true}).then((resp)=>{
-        
+        console.log({...resp})
         localStorage.setItem('token',resp.data)
     }).catch(err=>console.log(err))
     navigate('/products')

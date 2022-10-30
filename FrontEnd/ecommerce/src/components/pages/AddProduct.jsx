@@ -13,7 +13,7 @@ function AddProduct() {
   const [product, setProduct] = useState({});
   const [image, setImage] = useState("");
 
-
+  
   const handleChange = (event) => {
     setProduct({ ...product, [event.target.id]: event.target.value });
   };

@@ -11,11 +11,13 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-
-
+import { useNavigate } from "react-router-dom";
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+
+  const navigate=useNavigate()
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -74,19 +76,13 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
+          <Avatar /> my products
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <Avatar /> My buys
         </MenuItem>
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={()=>navigate('/Settings')}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
@@ -94,7 +90,7 @@ export default function AccountMenu() {
         </MenuItem>
         <MenuItem onClick={()=>{
             localStorage.clear()
-            window.location.reload(false)          
+            window.location.reload(false)
           }}>
           <ListItemIcon >
             <Logout fontSize="small"/>
