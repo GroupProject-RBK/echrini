@@ -1,7 +1,7 @@
 import axios from 'axios'
 import react,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import helper from '../../utilities/helper'
+//import helper from '../../utilities/helper'
 function Products() {
   const [data,setData]=useState([])
   const [check,setCheck]=useState(false)
