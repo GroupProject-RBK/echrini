@@ -68,7 +68,7 @@ module.exports = {
         if (bResult) {
             console.log(bResult)
         const token = jwt.sign({iduser:result[0].iduser},'jsfgfjguwrg8783wgbjs849h2fu3cnsvh8wyr8fhwfvi2g225',{ expiresIn: '24h' });
-        res.cookie('thetoken',token,{httpOnly:true,maxAge:24*60*60*1000})
+        res.cookie('thetoken',token,{httpOnly:false,maxAge:24*60*60*1000})
         return res.status(200).send(token);
         }
         return res.status(401).send({
@@ -98,7 +98,7 @@ module.exports = {
          console.log(decoded)
         db.query('SELECT * FROM user where iduser=?', decoded.iduser, function (error, results, fields) {
         if (error) throw error;
-        return res.send({ error: false, data: results[0], message: 'Fetch Successfully.' });
+        return res.send({data:{username:results[0].username,id:results[0].iduser,email:results[0].email}});
         });
         },
         logout:(req,res)=>{

@@ -19,7 +19,7 @@ function AddProduct() {
   });
   const [image, setImage] = useState("");
 
-  console.log(product);
+  
   const handleChange = (event) => {
     setProduct({ ...product, [event.target.id]: event.target.value });
   };
