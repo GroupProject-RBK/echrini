@@ -1,7 +1,9 @@
 import {Link, NavLink} from 'react-router-dom';
 import Dropdown from "./pages/Dropdown"
 import Account from './pages/Account';
+import Search from './pages/Search';
 const Header = () => {
+
   return (
     <header>
       <div className='container'>
@@ -9,6 +11,9 @@ const Header = () => {
 
           <div className='logo'>
             <Link to='index element' className='brand'>Echrini</Link>
+          </div>
+          <div>
+            <Search/>
           </div>
 
           <nav className='nav nav-pills'>
@@ -24,15 +29,17 @@ const Header = () => {
             >Products</NavLink>
             <div>
               <Dropdown/>
-            </div>
+            </div>{localStorage.getItem("token") ? 
             <NavLink to='add'
               className={(navData) => navData.isActive ? 'nav-link active' : 'nav-link'}
-            >Add a Product</NavLink>
+            >Add a Product</NavLink> : null
+          }
             <NavLink to='posts'
               className={(navData) => navData.isActive ? 'nav-link active' : 'nav-link'}
             >Posts</NavLink>
             <div>
-              <Account/>
+              {localStorage.getItem("token") ? <Account/> : null}
+              
             </div>
           </nav>
 

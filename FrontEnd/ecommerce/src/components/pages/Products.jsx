@@ -1,13 +1,13 @@
 import axios from 'axios'
 import react,{useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import helper from '../../utilities/helper'
 function Products() {
   const [data,setData]=useState([])
   const [check,setCheck]=useState(false)
 
   const checkF=()=>{
     setCheck(!check)
+   
   }
   
   useEffect(()=>{axios.get('http://localhost:3002/products/getAll').then((resp)=>{setData(resp.data)}).catch(err=>{throw err})},[check])
@@ -38,7 +38,7 @@ function Products() {
               <div id={e.id} className='col-lg-4' key={i}>
                 <div className='card'>
                   <div className='img-warp'>
-                    <img src={e.img} className="img-thumbnail"/>
+                    <img src={JSON.parse(e.img)} className="img-thumbnail"/>
                   </div>
                   <div className='card-body'>
                     <h5 className='card-titel'>{e.name}</h5>
