@@ -1,5 +1,4 @@
 
-
 import {  total,list,remove } from 'cart-localstorage' 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +8,7 @@ const Cart=()=>{
     const t=list()
     let navigate = useNavigate()
     const orde=()=>{
+
         if(localStorage.getItem("token") === undefined){
             navigate("/login")
         }
@@ -17,8 +17,9 @@ const Cart=()=>{
           axios.post('http://localhost:3002/products/buy',{id:e.id,userid:id}).then((resp)=>{console.log(resp)}).catch((err)=>{
             console.log(err)
          }).then(()=>alert('congrats your purshase is done successfuly')).then(()=>{navigate('/products')})
-        })
-      }
+
+        
+      
     axios.interceptors.request.use(
         config => {
           config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
@@ -30,11 +31,16 @@ const Cart=()=>{
       )
     
       useEffect(()=>{axios.post('http://localhost:3002/products/get-user').then(resp=>setId(resp.data.data.id)).catch(err=> console.log(err))},[])
+
 const handleClick = (e) =>{
     remove(e)
     window.location.reload(false)
 
 }
+
+
+
+
 
     return (
         <div className="cart">
@@ -72,7 +78,9 @@ const handleClick = (e) =>{
                             </div>
                             </th>
                             <td className="border-0 align-middle"><strong>{e.price} DT</strong></td>
+
                             <td className="border-0 align-middle" onClick={()=>{handleClick(e.id)}}><strong>❌</strong></td>
+
                             <td className="border-0 align-middle"><a href="#" className="text-dark"><i className="bi bi-trash"></i></a></td>
                         </tr>
                                 )

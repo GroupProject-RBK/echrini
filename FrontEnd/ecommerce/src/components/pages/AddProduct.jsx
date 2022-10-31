@@ -40,6 +40,17 @@ console.log(product.id)
         console.log(err);
       });
   };
+  axios.interceptors.request.use(
+    config => {
+      config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+          return config;
+      },
+      error => {
+          return Promise.reject(error);
+      }
+  )
+
+  useEffect(()=>{axios.post('http://localhost:3002/products/get-user').then(resp=>setProduct({...product,id:resp.data.data.id})).catch(err=> console.log(err))},[])
 
   const headers = {
     'Authorization': `Bearer ${localStorage.getItem('token')}`
