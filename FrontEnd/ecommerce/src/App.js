@@ -1,7 +1,6 @@
 import {BrowserRouter,Routes,Route } from "react-router-dom"
 import Home from "./components/pages/Home"
 import About from "./components/pages/About"
-import Posts from "./components/pages/Posts"
 import Products from "./components/pages/Products"
 import SingleProduct from "./components/pages/SingleProduct"
 import Error from "./components/pages/Error"
@@ -16,6 +15,7 @@ import Login from "./components/pages/Login"
 import Register from "./components/pages/register"
 import AccountSettings from "./components/AccountSettings"
 import Cart from "./components/pages/cart"
+import MyProducts from "./components/pages/MyProducts"
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
       <BrowserRouter>
     <Header/>
       <Routes>
+<Route path="Mybuys" element={<MyProducts/>}></Route>        
 <Route path="Cart" element={<Cart/>}></Route>
 <Route path="Settings" element={<AccountSettings/>}></Route>
 <Route path="login" element={<Login/>}></Route>
@@ -33,7 +34,6 @@ function App() {
 <Route path="about" element={<About/>}/>
 <Route path="products" element={<Products/>}/>
 <Route path="products/:productId" element={<SingleProduct/>}/>
-<Route path="posts" element={<Posts/>}/>
 <Route path="*" element={<Error/>}/>
       </Routes>
     <Footer/>

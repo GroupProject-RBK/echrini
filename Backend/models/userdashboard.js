@@ -4,7 +4,7 @@ const bcrypt=require('bcrypt')
 module.exports={
     insertP:(cb,values)=>{
         var sql='insert into products set name=? , category=? , price=? , img=? , description=? , user_id=?'
-        db.query(sql,[values.name,values.category,values.price,values.img,values.description,values.user_id],(err,result)=>{cb(err,result)})
+        db.query(sql,[values.name,values.category,values.price,values.img,values.description,values.id],(err,result)=>{cb(err,result)})
     },
     updateP:(cb,values)=>{
         var sql='update products set name=? , category=? , price=? , img=? , description=? , where id = ?'

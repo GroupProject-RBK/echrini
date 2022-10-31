@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
@@ -6,6 +6,7 @@ import axios from "axios";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import './Add.css';
+import Products from "./Products";
 
 
 function AddProduct() {
@@ -13,11 +14,11 @@ function AddProduct() {
   const [product, setProduct] = useState({});
   const [image, setImage] = useState("");
 
-  
+  console.log(product);
   const handleChange = (event) => {
     setProduct({ ...product, [event.target.id]: event.target.value });
   };
-
+console.log(product.id)
   const cloudName = "mazenkouki";
 
   const onClickHandler = (e) => {
@@ -40,6 +41,21 @@ function AddProduct() {
       });
   };
 
+  const headers = {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  }
+  // axios.interceptors.request.use(
+  //   config => {
+  //     config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+  //         return config;
+  //     },
+  //     error => {
+  //         return Promise.reject(error);
+  //     }
+  // )
+
+  useEffect(()=>{axios.post('http://localhost:3002/products/get-user',null,{headers: headers}).then(resp=>setProduct({...product,id:resp.data.data.id})).catch(err=> console.log(err))},[])
+
   const uploadHandler = () => {
     axios
       .post("http://localhost:3002/products/postP", product)
@@ -51,7 +67,7 @@ function AddProduct() {
     <center>
     <div className="Add">
       <div className="loginSect">
-        <p>Logged In Person</p>
+        <p><strong> upload your product </strong> </p>
       </div>
     <div className="data">
         <div>
@@ -93,16 +109,7 @@ function AddProduct() {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <TextField
-            id="user_id"
-            label="User_id"
-            multiline
-            rows={4}
-            margin="normal"
-            onChange={handleChange}
-          />
-        </div>
+        
         <div>
           <IconButton
             color="primary"

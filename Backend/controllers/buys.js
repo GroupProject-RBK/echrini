@@ -23,6 +23,6 @@ module.exports={
     getAllbuys:(req,res)=>{
         buys.getAllBuys((err,result)=>{
             err ? res.status(500).send(err) : res.status(201).send(result)
-        })
+        },req.body.id)
     }
     }
