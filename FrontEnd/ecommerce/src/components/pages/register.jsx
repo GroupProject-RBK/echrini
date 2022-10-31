@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-
+import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 
 export default function Register() {
   const [credentials, setcredantial] = useState({email:'',password:'',username:'',confirmP:''});
@@ -27,29 +27,56 @@ export default function Register() {
   
 
   return(
-    <div className="login-wrapper">
-      <h1>Please Log In</h1>
-      
-        <label>
-          <p>mail</p>
-          <input type="text" onChange={e =>  {setcredantial({...credentials,email:e.target.value})}}/>
-        </label>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={e =>  {setcredantial({...credentials,username:e.target.value})}}/>
-        </label>
-        <label>
-          <p>Username Or mail</p>
-          <input type="password" onChange={e => setcredantial({...credentials,password:e.target.value})}/>
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" onChange={e => setcredantial({...credentials,confirmP:e.target.value})}/>
-        </label>
-        <div>
-          <button  onClick={()=>login()}>Submit</button>
-        </div>
-      
-    </div>
+    <div>
+    <Container>
+      <Row className="vh-100 d-flex justify-content-center align-items-center">
+        <Col md={8} lg={6} xs={12}>
+          <div className="border border-3 border-primary"></div>
+          <Card className="shadow">
+            <Card.Body>
+              <div className="mb-3 mt-md-4">
+                <h2 className="fw-bold mb-2 text-uppercase ">Sign Up</h2>
+                <div className="mb-3">
+                  <Form>
+                    <Form.Group className="mb-3" controlId="formBasicUsername">
+                      <Form.Label className="text-center">
+                       Username
+                      </Form.Label>
+                      <Form.Control type="username" placeholder="Enter username" onChange={e =>  {setcredantial({...credentials,username:e.target.value})}}/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label className="text-center">
+                       Email
+                      </Form.Label>
+                      <Form.Control type="Email" placeholder="Enter email" onChange={e =>  {setcredantial({...credentials,email:e.target.value})}}/>
+                    </Form.Group>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="formBasicPassword"
+                    >
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control type="password" placeholder="Password" onChange={e => setcredantial({...credentials,password:e.target.value})}/>
+                    </Form.Group>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="formBasicPassword"
+                    >
+                      <Form.Label>Confirm Password</Form.Label>
+                      <Form.Control type="password" placeholder="Password" onChange={e => setcredantial({...credentials,confirmP:e.target.value})}/>
+                    </Form.Group>
+                    <div className="d-grid">
+                      <Button variant="primary" type="submit">
+                        Sinup
+                      </Button>
+                    </div>
+                  </Form>
+                </div>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  </div>    
   )
 }

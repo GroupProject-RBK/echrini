@@ -8,14 +8,18 @@ const Cart=()=>{
     const t=list()
     let navigate = useNavigate()
     const orde=()=>{
-        
+
+        if(localStorage.getItem("token") === undefined){
+            navigate("/login")
+        }
         t.length&&t.map((e,i)=>{
+            console.log(e.id,"e.id","id",id)
+          axios.post('http://localhost:3002/products/buy',{id:e.id,userid:id}).then((resp)=>{console.log(resp)}).catch((err)=>{
+            console.log(err)
+         }).then(()=>alert('congrats your purshase is done successfuly')).then(()=>{navigate('/products')})
+
         
-          axios.post('http://localhost:3002/products/buy',{id:e.id,idRest:id}).then((resp)=>{console.log(resp)}).catch((err)=>{
-            console.log(err).then(()=>{}).then(()=>alert('congrats your purshase is done successfuly')).then(()=>{navigate('/products')})
-          })
-        })
-      }
+      
     axios.interceptors.request.use(
         config => {
           config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
@@ -27,6 +31,14 @@ const Cart=()=>{
       )
     
       useEffect(()=>{axios.post('http://localhost:3002/products/get-user').then(resp=>setId(resp.data.data.id)).catch(err=> console.log(err))},[])
+
+const handleClick = (e) =>{
+    remove(e)
+    window.location.reload(false)
+
+}
+
+
 
 
 
@@ -66,7 +78,9 @@ const Cart=()=>{
                             </div>
                             </th>
                             <td className="border-0 align-middle"><strong>{e.price} DT</strong></td>
-                            <td className="border-0 align-middle"><strong onClick={()=>{remove(e.id)}}>❌</strong></td>
+
+                            <td className="border-0 align-middle" onClick={()=>{handleClick(e.id)}}><strong>❌</strong></td>
+
                             <td className="border-0 align-middle"><a href="#" className="text-dark"><i className="bi bi-trash"></i></a></td>
                         </tr>
                                 )

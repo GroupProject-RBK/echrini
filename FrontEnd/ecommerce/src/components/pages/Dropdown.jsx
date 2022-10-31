@@ -90,7 +90,6 @@ export default function MenuListComposition() {
                     </Link>
                     <MenuItem onClick={handleClose}>DIY</MenuItem>
                     
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

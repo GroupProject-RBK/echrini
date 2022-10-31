@@ -14,11 +14,11 @@ function AddProduct() {
   const [product, setProduct] = useState({});
   const [image, setImage] = useState("");
 
-  
+  console.log(product);
   const handleChange = (event) => {
     setProduct({ ...product, [event.target.id]: event.target.value });
   };
-
+console.log(product.id)
   const cloudName = "mazenkouki";
 
   const onClickHandler = (e) => {
@@ -52,6 +52,21 @@ function AddProduct() {
 
   useEffect(()=>{axios.post('http://localhost:3002/products/get-user').then(resp=>setProduct({...product,id:resp.data.data.id})).catch(err=> console.log(err))},[])
 
+  const headers = {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  }
+  // axios.interceptors.request.use(
+  //   config => {
+  //     config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+  //         return config;
+  //     },
+  //     error => {
+  //         return Promise.reject(error);
+  //     }
+  // )
+
+  useEffect(()=>{axios.post('http://localhost:3002/products/get-user',null,{headers: headers}).then(resp=>setProduct({...product,id:resp.data.data.id})).catch(err=> console.log(err))},[])
+
   const uploadHandler = () => {
     axios
       .post("http://localhost:3002/products/postP", product)
@@ -63,7 +78,7 @@ function AddProduct() {
     <center>
     <div className="Add">
       <div className="loginSect">
-        <p>Logged In Person</p>
+        <p><strong> upload your product </strong> </p>
       </div>
     <div className="data">
         <div>
